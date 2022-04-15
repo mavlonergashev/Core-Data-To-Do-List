@@ -24,7 +24,7 @@ class MainVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        getTasks()
     }
 
     @IBAction func newTaskBtnPressed(_ sender: Any) {
@@ -47,7 +47,7 @@ class MainVC: UIViewController {
                 } catch {
                     print("Saving Error")
                 }
-                
+                self.getTasks()
             } else {
                 alertVC.textFields?.first?.placeholder = "Title: *Required"
             }
@@ -60,6 +60,17 @@ class MainVC: UIViewController {
         alertVC.addAction(cancelAction)
         
         present(alertVC, animated: true, completion: nil)
+    }
+    
+    func getTasks() {
+        do {
+            let request = NSFetchRequest<ToDoItem>(entityName: "ToDoItem")
+            let tasks = try context.fetch(request)
+            self.data = tasks
+            self.tableView.reloadData()
+        } catch {
+            print("Fetching Error")
+        }
     }
     
 }
