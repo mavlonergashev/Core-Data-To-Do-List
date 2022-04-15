@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class MainVC: UIViewController {
 
@@ -27,6 +28,32 @@ class MainVC: UIViewController {
     }
 
     @IBAction func newTaskBtnPressed(_ sender: Any) {
+        let alertVC = UIAlertController(title: "New Task", message: "Insert task title:", preferredStyle: .alert)
+        
+        alertVC.addTextField { tf in
+            tf.placeholder = "Title"
+        }
+        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
+            //save
+            if let text = alertVC.textFields?.first?.text {
+                
+                let item = ToDoItem(context: self.context)
+                item.title = text
+                item.isDone = false
+                item.date = Date()
+                
+            } else {
+                alertVC.textFields?.first?.placeholder = "Title: *Required"
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
+            //cancel
+        }
+        
+        alertVC.addAction(saveAction)
+        alertVC.addAction(cancelAction)
+        
+        present(alertVC, animated: true, completion: nil)
     }
     
 }
@@ -43,7 +70,7 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         let isDoneText = data[indexPath.row].isDone ? "[✅]" : "[❎]"
-        cell.textLabel?.text =  "\(isDoneText)" + "\(data[indexPath.row].title)"
+        cell.textLabel?.text =  "\(isDoneText)" + data[indexPath.row].title!
         
         return cell
     }
