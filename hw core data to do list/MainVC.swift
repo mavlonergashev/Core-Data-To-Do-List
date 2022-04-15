@@ -42,6 +42,12 @@ class MainVC: UIViewController {
                 item.isDone = false
                 item.date = Date()
                 
+                do {
+                    try self.context.save()
+                } catch {
+                    print("Saving Error")
+                }
+                
             } else {
                 alertVC.textFields?.first?.placeholder = "Title: *Required"
             }
