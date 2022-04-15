@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainVC" customModule="hw_core_data_to_do_list" customModuleProvider="target">
+            <connections>
+                <outlet property="searchBar" destination="jd9-ti-VX3" id="ZPn-vb-TUl"/>
+                <outlet property="tableView" destination="ONz-Jo-ekC" id="djX-Ka-hdR"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ONz-Jo-ekC">
+                    <rect key="frame" x="0.0" y="95" width="414" height="707"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="jd9-ti-VX3">
+                    <rect key="frame" x="0.0" y="44" width="414" height="51"/>
+                    <textInputTraits key="textInputTraits"/>
+                </searchBar>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LiN-xg-bps">
+                    <rect key="frame" x="0.0" y="802" width="414" height="40"/>
+                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="1Of-Te-zZj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="New Task"/>
+                    <connections>
+                        <action selector="newTaskBtnPressed:" destination="-1" eventType="touchUpInside" id="rcL-PV-eI1"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ONz-Jo-ekC" secondAttribute="trailing" id="9kT-cS-evO"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="LiN-xg-bps" secondAttribute="bottom" constant="20" id="9yN-nn-H15"/>
+                <constraint firstItem="jd9-ti-VX3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="DsO-Kt-ue2"/>
+                <constraint firstItem="LiN-xg-bps" firstAttribute="top" secondItem="ONz-Jo-ekC" secondAttribute="bottom" id="VTa-cn-JHO"/>
+                <constraint firstItem="jd9-ti-VX3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="W70-i7-deQ"/>
+                <constraint firstItem="LiN-xg-bps" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="XVl-4i-hNK"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jd9-ti-VX3" secondAttribute="trailing" id="aw6-qS-Aec"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LiN-xg-bps" secondAttribute="trailing" id="cOb-ke-fi0"/>
+                <constraint firstItem="ONz-Jo-ekC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dSj-8u-Uib"/>
+                <constraint firstItem="ONz-Jo-ekC" firstAttribute="top" secondItem="jd9-ti-VX3" secondAttribute="bottom" id="lPt-bU-CIE"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="100"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
