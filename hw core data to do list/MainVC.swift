@@ -65,16 +65,20 @@ class MainVC: UIViewController {
     func getTasks() {
         do {
             let request = NSFetchRequest<ToDoItem>(entityName: "ToDoItem")
+            let sortByDone = NSSortDescriptor(key: "isDone", ascending: true)
+            let sortByTitle = NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
+            request.sortDescriptors = [sortByDone,sortByTitle]
             let tasks = try context.fetch(request)
             self.data = tasks
-            self.tableView.reloadData()
+            self.tableView.reloadSections(IndexSet(integer: .zero), with: .automatic)
         } catch {
             print("Fetching Error")
         }
     }
     
     func deleteTask(task: ToDoItem) {
-        try self.context.delete(task)
+        self.context.delete(task)
+        getTasks()
     }
     
 }
@@ -107,7 +111,7 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
             //save edited
             if let text = alertVC.textFields?.first?.text {
                 task.title = text
-                self.tableView.reloadSections(IndexSet(integer: .zero), with: .automatic)
+                self.getTasks()
             }
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
@@ -116,6 +120,15 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
         alertVC.addAction(saveAction)
         alertVC.addAction(cancelAction)
         self.present(alertVC, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { _, _, _ in
+            //Delete
+            self.deleteTask(task: self.data[indexPath.row])
+            self.getTasks()
+        }
+        return UISwipeActionsConfiguration(actions: [delete])
     }
     
 }
@@ -128,8 +141,7 @@ extension MainVC: TaskDoneDelegate {
         //edit Task isDone: true/false
         let task = self.data[index]
         task.isDone = !task.isDone
-//        getTasks()
-        self.tableView.reloadSections(IndexSet(integer: .zero), with: .automatic )
+        getTasks()
     }
     
 }
