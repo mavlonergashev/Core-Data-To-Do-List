@@ -13,6 +13,8 @@
 		0411853628098576008ECD7F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0411853428098576008ECD7F /* LaunchScreen.storyboard */; };
 		0411853F28098625008ECD7F /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411853D28098625008ECD7F /* MainVC.swift */; };
 		0411854028098625008ECD7F /* MainVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0411853E28098625008ECD7F /* MainVC.xib */; };
+		0411854328099E24008ECD7F /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0411854128099E24008ECD7F /* Cell.swift */; };
+		0411854428099E24008ECD7F /* Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0411854228099E24008ECD7F /* Cell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		0411853728098576008ECD7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0411853D28098625008ECD7F /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		0411853E28098625008ECD7F /* MainVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainVC.xib; sourceTree = "<group>"; };
+		0411854128099E24008ECD7F /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		0411854228099E24008ECD7F /* Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Cell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 			children = (
 				0411852628098576008ECD7F /* AppDelegate.swift */,
 				0411853D28098625008ECD7F /* MainVC.swift */,
+				0411854128099E24008ECD7F /* Cell.swift */,
+				0411854228099E24008ECD7F /* Cell.xib */,
 				0411853E28098625008ECD7F /* MainVC.xib */,
 				0411853228098576008ECD7F /* Assets.xcassets */,
 				0411853428098576008ECD7F /* LaunchScreen.storyboard */,
@@ -126,6 +132,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0411854028098625008ECD7F /* MainVC.xib in Resources */,
+				0411854428099E24008ECD7F /* Cell.xib in Resources */,
 				0411853628098576008ECD7F /* LaunchScreen.storyboard in Resources */,
 				0411853328098576008ECD7F /* Assets.xcassets in Resources */,
 			);
@@ -139,6 +146,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0411852728098576008ECD7F /* AppDelegate.swift in Sources */,
+				0411854328099E24008ECD7F /* Cell.swift in Sources */,
 				0411853F28098625008ECD7F /* MainVC.swift in Sources */,
 				0411853128098576008ECD7F /* hw_core_data_to_do_list.xcdatamodeld in Sources */,
 			);

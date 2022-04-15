@@ -15,7 +15,7 @@ class MainVC: UIViewController {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
-            tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+            tableView.register(UINib(nibName: "Cell", bundle: nil), forCellReuseIdentifier: "Cell")
         }
     }
     
@@ -73,6 +73,10 @@ class MainVC: UIViewController {
         }
     }
     
+    func deleteTask(task: ToDoItem) {
+        try self.context.delete(task)
+    }
+    
 }
 
 //MARK: - Table View
@@ -84,13 +88,48 @@ extension MainVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! Cell
         
-        let isDoneText = data[indexPath.row].isDone ? "[✅]" : "[❎]"
-        cell.textLabel?.text =  "\(isDoneText)" + data[indexPath.row].title!
+        cell.index = indexPath.row
+        cell.delegate = self
+        cell.updateCell(task: data[indexPath.row])
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let task = self.data[indexPath.row]
+        let alertVC = UIAlertController(title: "Edit Task", message: "You can change task title:", preferredStyle: .alert)
+        alertVC.addTextField { tf in
+            tf.text = task.title
+        }
+        let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
+            //save edited
+            if let text = alertVC.textFields?.first?.text {
+                task.title = text
+                self.tableView.reloadSections(IndexSet(integer: .zero), with: .automatic)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
+            //cancel
+        }
+        alertVC.addAction(saveAction)
+        alertVC.addAction(cancelAction)
+        self.present(alertVC, animated: true, completion: nil)
+    }
+    
 }
 
+//MARK: - TaskDoneDelegate Protocol
+
+extension MainVC: TaskDoneDelegate {
+    
+    func doneChanged(index: Int) {
+        //edit Task isDone: true/false
+        let task = self.data[index]
+        task.isDone = !task.isDone
+//        getTasks()
+        self.tableView.reloadSections(IndexSet(integer: .zero), with: .automatic )
+    }
+    
+}
