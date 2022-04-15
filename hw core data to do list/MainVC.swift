@@ -10,7 +10,11 @@ import CoreData
 
 class MainVC: UIViewController {
 
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBar: UISearchBar! {
+        didSet {
+            searchBar.delegate = self
+        }
+    }
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -76,6 +80,22 @@ class MainVC: UIViewController {
         }
     }
     
+    func getFilteredTask(text: String) {
+        do {
+            let request = NSFetchRequest<ToDoItem>(entityName: "ToDoItem")
+            let sortByDone = NSSortDescriptor(key: "isDone", ascending: true)
+            let sortByTitle = NSSortDescriptor(key: "title", ascending: true, selector: #selector(NSString.caseInsensitiveCompare(_:)))
+            let searchFilter = NSPredicate(format: "title CONTAINS[c] %@", text)
+            request.predicate = searchFilter
+            request.sortDescriptors = [sortByDone,sortByTitle]
+            let tasks = try context.fetch(request)
+            self.data = tasks
+            self.tableView.reloadSections(IndexSet(integer: .zero), with: .automatic)
+        } catch {
+            print("Fetching Error")
+        }
+    }
+    
     func deleteTask(task: ToDoItem) {
         self.context.delete(task)
         getTasks()
@@ -85,7 +105,15 @@ class MainVC: UIViewController {
 
 //MARK: - Table View
 
-extension MainVC: UITableViewDelegate, UITableViewDataSource {
+extension MainVC: UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+            self.getTasks()
+        } else {
+            self.getFilteredTask(text: searchText)
+        }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count

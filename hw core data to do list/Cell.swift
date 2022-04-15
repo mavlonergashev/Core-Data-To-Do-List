@@ -37,6 +37,10 @@ class Cell: UITableViewCell {
     func updateCell(task: ToDoItem) {
         titleLbl.text = task.title
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        dateLbl.text = dateFormatter.string(from: task.date!)
+        
         if task.isDone {
             isDoneBtn.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
             isDoneBtn.tintColor = .systemGreen

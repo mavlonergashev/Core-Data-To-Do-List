@@ -22,23 +22,31 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ONz-Jo-ekC">
-                    <rect key="frame" x="0.0" y="95" width="414" height="707"/>
+                    <rect key="frame" x="0.0" y="94" width="414" height="698"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
-                <searchBar contentMode="redraw" searchBarStyle="minimal" translatesAutoresizingMaskIntoConstraints="NO" id="jd9-ti-VX3">
-                    <rect key="frame" x="0.0" y="44" width="414" height="51"/>
+                <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search for tasks..." translatesAutoresizingMaskIntoConstraints="NO" id="jd9-ti-VX3">
+                    <rect key="frame" x="0.0" y="44" width="414" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="JkW-55-INY"/>
+                    </constraints>
                     <textInputTraits key="textInputTraits"/>
                 </searchBar>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LiN-xg-bps">
-                    <rect key="frame" x="0.0" y="802" width="414" height="40"/>
-                    <color key="backgroundColor" systemColor="systemGreenColor"/>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LiN-xg-bps">
+                    <rect key="frame" x="10" y="792" width="394" height="50"/>
+                    <color key="backgroundColor" systemColor="systemPurpleColor"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="1Of-Te-zZj"/>
+                        <constraint firstAttribute="height" constant="50" id="1Of-Te-zZj"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="New Task"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="newTaskBtnPressed:" destination="-1" eventType="touchUpInside" id="rcL-PV-eI1"/>
                     </connections>
@@ -52,9 +60,9 @@
                 <constraint firstItem="jd9-ti-VX3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="DsO-Kt-ue2"/>
                 <constraint firstItem="LiN-xg-bps" firstAttribute="top" secondItem="ONz-Jo-ekC" secondAttribute="bottom" id="VTa-cn-JHO"/>
                 <constraint firstItem="jd9-ti-VX3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="W70-i7-deQ"/>
-                <constraint firstItem="LiN-xg-bps" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="XVl-4i-hNK"/>
+                <constraint firstItem="LiN-xg-bps" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="XVl-4i-hNK"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="jd9-ti-VX3" secondAttribute="trailing" id="aw6-qS-Aec"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LiN-xg-bps" secondAttribute="trailing" id="cOb-ke-fi0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LiN-xg-bps" secondAttribute="trailing" constant="10" id="cOb-ke-fi0"/>
                 <constraint firstItem="ONz-Jo-ekC" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dSj-8u-Uib"/>
                 <constraint firstItem="ONz-Jo-ekC" firstAttribute="top" secondItem="jd9-ti-VX3" secondAttribute="bottom" id="lPt-bU-CIE"/>
             </constraints>
@@ -65,8 +73,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
